@@ -17,7 +17,7 @@ export const Card = ({ imgSrc, name, surname, street, postCode, subRegion, phone
       <img className={style.avatar} src={imgSrc} alt="" />
       <div className={style["card-info-wrapper"]}>
         <div className={style["info-wrapper"]}>
-          <h3>{`${name} ${surname}`}</h3>
+          <h3 className="">{`${name} ${surname}`}</h3>
         </div>
         <div className={style["info-wrapper"]}>
           <h4>Address:</h4>
