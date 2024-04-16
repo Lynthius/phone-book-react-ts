@@ -8,18 +8,11 @@ import { Form } from "./components/Form/Form";
 import { useAPI } from "./components/test/useApi";
 import { TestButton } from "./components/TestButton";
 import { Cart } from "./components/Cart/Cart";
-
-
+import { Bus } from "./components/Bus/Bus";
 
 function App() {
-  const { data,isLoading,isError } = useAPI<Person[]>("https://jsonplaceholder.typicode.com/users");
+  const { data, isLoading, isError } = useAPI<Person[]>("https://jsonplaceholder.typicode.com/users");
   console.log(data);
-  // const ref=useRef<ElementRef<HTMLDivElement>>(null)
-
-  // const [filteredCardsData, setFilteredCardsData] = useState<Person[]>(cardsData);
-  // const handleFilterChange = (filteredData: Person[]) => {
-  //   setFilteredCardsData(filteredData);
-  // };
   const [filteredCardsData, setFilteredCardsData] = useState<Person[]>([]);
   useEffect(() => {
     if (data) {
@@ -30,11 +23,11 @@ function App() {
   const handleFilterChange = (filteredData: Person[]) => {
     setFilteredCardsData(filteredData);
   };
-  if(isError){
-    return <p>Error</p>
+  if (isError) {
+    return <p>Error</p>;
   }
-  if(isLoading){
-    return <p>Loading...</p>
+  if (isLoading) {
+    return <p>Loading...</p>;
   }
 
   return (
@@ -48,6 +41,7 @@ function App() {
         <TestButton>Click!</TestButton>
       </Wrapper>
       <Cart />
+      <Bus />
     </>
   );
 }

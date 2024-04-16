@@ -84,7 +84,8 @@ function reducer(state: typeof initialState, action: Readonly<ActionType>): type
 
 //lista produktów które można dodać
 const products:Product[]=[
-  {id: "1", name: "test",price: 10}
+  {id: "1", name: "test",price: 10},
+  {id: "2", name: "test2",price: 20},
 ]
 //wyświetlić koszyk
 //podłączyć akcje
