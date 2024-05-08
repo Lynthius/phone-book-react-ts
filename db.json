@@ -1,0 +1,67 @@
+{
+  "clients": [
+    {
+      "id": "1",
+      "imgSrc": "https://images.unsplash.com/photo-1661869535393-872dea2d9f8d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80",
+      "name": "Zbigniew",
+      "surname": "Herbert",
+      "street": "TestStreet",
+      "postCode": "00-123",
+      "town": "Town",
+      "region": "Region",
+      "phoneNumber": "+48 123 456 789"
+    },
+    {
+      "id": "b685",
+      "imgSrc": "",
+      "name": "Tomasz",
+      "surname": "Przyborowski",
+      "street": "Tartaczna 4/21",
+      "postCode": "62-095",
+      "town": "Murowana Goślina",
+      "region": "Wlkp",
+      "phoneNumber": "666666666"
+    },
+    {
+      "imgSrc": "",
+      "name": "Janko",
+      "surname": "Muzykant",
+      "street": "Testowa 4/21",
+      "postCode": "62-095",
+      "town": "Warszawa",
+      "region": "Wlkp",
+      "phoneNumber": "777777777",
+      "id": "4117"
+    }
+  ],
+  "orders": [
+    {
+      "id": "2690",
+      "clientId": "b685",
+      "quantity": 1,
+      "title": "Your asd",
+      "body": "asdsadas"
+    },
+    {
+      "id": "3bca",
+      "clientId": "4117",
+      "quantity": 1,
+      "title": "Your asd",
+      "body": "asdasdas"
+    },
+    {
+      "id": "8425",
+      "clientId": "4117",
+      "quantity": 1,
+      "title": "Your asd",
+      "body": "asdasdas"
+    },
+    {
+      "id": "55f6",
+      "clientId": "b685",
+      "quantity": 1,
+      "title": "Your titledas",
+      "body": "asdas"
+    }
+  ]
+}

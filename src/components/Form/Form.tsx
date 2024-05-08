@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-// import { Person, cardsData } from "../Card/data/cards-data";
-import { useAPI } from "../test/useApi"
+// import { Person } from "../Card/data/cards-data";
+import { useGetClients } from "../../api/queries";
 
 type Person = {
-  id: number;
+  imgSrc: string;
   name: string;
-  username: string;
-  email: string;
-  address: object;
-  phone: string;
-  website: string;
-  company: object;
+  surname: string;
+  street: string;
+  postCode: string;
+  town: string;
+  region: string;
+  phoneNumber: string;
 };
 
 type FormProps = {
@@ -18,9 +18,8 @@ type FormProps = {
 };
 
 export const Form = ({ onFilterChange }: FormProps) => {
-  const { data } = useAPI (
-    "https://jsonplaceholder.typicode.com/users"
-  );
+  const { data } = useGetClients();
+
   const [searchInput, setSearchInput] = useState("");
   // const [filteredResults, setFilteredResults] = useState(cardsData);
 
@@ -30,7 +29,7 @@ export const Form = ({ onFilterChange }: FormProps) => {
 
     if (searchInput !== "") {
       const filteredData = data.filter((item) => {
-        return item.name.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())
+        return item.name.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase());
       });
       // setFilteredResults(filteredData);
       onFilterChange(filteredData);
@@ -63,7 +62,7 @@ export const Form = ({ onFilterChange }: FormProps) => {
               value={searchInput}
               onChange={(e) => searchItems(e.target.value)}
             />
-            <button onClick={handleSubmit} >
+            <button onClick={handleSubmit}>
               <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <path
                   fill="none"

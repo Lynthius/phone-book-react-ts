@@ -1,48 +1,52 @@
 import "./App.css";
-import { useState, useEffect } from "react";
-import { Card, Person } from "./components/Card/Card";
-import { Wrapper } from "./components/Wrapper/Wrapper";
-import { Menu } from "./components/Menu/Menu";
-import { Form } from "./components/Form/Form";
-// import { Person, cardsData } from "./components/Card/data/cards-data";
-import { useAPI } from "./components/test/useApi";
-import { TestButton } from "./components/TestButton";
-import { Cart } from "./components/Cart/Cart";
-import { Bus } from "./components/Bus/Bus";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { MainLayout } from "./layouts/MainLayout";
+import { HomePage } from "./pages/HomePage";
+import { ClientsPage } from "./pages/ClientsPage";
+import { ClientPage } from "./pages/ClientPage";
+import { AddClientPage } from "./pages/AddClientPage";
+import { EditClientPage } from "./pages/EditClientPage";
+import { OrdersPage } from "./pages/OrdersPage";
+import { InvoicesPage } from "./pages/InvoicesPage";
+import { PostsPage } from "./pages/PostsPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import { ROUTES } from "./routes";
+
+import { QueryClient, QueryClientProvider, QueryCache } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient({
+  queryCache: new QueryCache(),
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
 
 function App() {
-  const { data, isLoading, isError } = useAPI<Person[]>("https://jsonplaceholder.typicode.com/users");
-  console.log(data);
-  const [filteredCardsData, setFilteredCardsData] = useState<Person[]>([]);
-  useEffect(() => {
-    if (data) {
-      setFilteredCardsData(data);
-    }
-  }, [data]);
-
-  const handleFilterChange = (filteredData: Person[]) => {
-    setFilteredCardsData(filteredData);
-  };
-  if (isError) {
-    return <p>Error</p>;
-  }
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
   return (
-    <>
-      <Menu />
-      <Wrapper>
-        <Form onFilterChange={handleFilterChange} />
-        {filteredCardsData.map((el) => (
-          <Card key={el.id} {...el} />
-        ))}
-        <TestButton>Click!</TestButton>
-      </Wrapper>
-      <Cart />
-      <Bus />
-    </>
+    <QueryClientProvider client={queryClient}>
+      {process.env.NODE_ENV === "development" && <ReactQueryDevtools position="bottom" initialIsOpen={false} />}
+      <BrowserRouter>
+        <Routes>
+          <Route path={ROUTES.home} element={<MainLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path={ROUTES.page404} element={<NotFoundPage />} />
+            <Route path={ROUTES.clients} element={<ClientsPage />} />
+            <Route path={ROUTES.clientAdd} element={<AddClientPage />} />
+            <Route path={ROUTES.clientId(":id")} element={<ClientPage />} />
+            <Route path={ROUTES.clientEdit(":id")} element={<EditClientPage />} />
+            <Route path={ROUTES.orders} element={<OrdersPage />} />
+            <Route path={ROUTES.ordersAdd} element={<OrdersPage />} />
+            <Route path={ROUTES.orderId(":id")} element={<OrdersPage />} />
+            <Route path={ROUTES.invoices} element={<InvoicesPage />} />
+            <Route path={ROUTES.posts} element={<PostsPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 

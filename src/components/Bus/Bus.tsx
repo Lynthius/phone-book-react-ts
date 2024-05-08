@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, ElementRef } from "react";
 
 export const Bus = () => {
   const [children, setChildren] = useState([
@@ -8,16 +8,17 @@ export const Bus = () => {
     },
   ]);
 
-  const nameRef = useRef(null);
-  const ageRef = useRef(null);
+  const nameRef = useRef<ElementRef<"input">>(null);
+  // ElementRef blokuje możliwość przypięcia do innego typu niż wskazany
+  const ageRef = useRef<ElementRef<"input">>(null);
   // ! problem -> possibly null
   const handleAddChild = () => {
-    const name = nameRef.current.value;
-    const age = ageRef.current.value;
-// ? czym jest current value
-    if (name && age) {
-      setChildren([...children, { name, age }]);
-      nameRef.current.value = "";
+    if(nameRef && nameRef.current && ageRef && ageRef.current){
+      const name = nameRef.current.value;
+      const age = ageRef.current.value;
+      // current to obecnie przypięty element do referencji
+       setChildren([...children, { name, age }]);
+       nameRef.current.value = "";
       ageRef.current.value = "";
     }
   };
@@ -25,16 +26,16 @@ export const Bus = () => {
   return (
     <div>
       <h2>Add Child</h2>
-      <form>
-        <div>
-          <label>Name:</label>
-          <input type="text" ref={nameRef} />
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline" type="text" ref={nameRef} />
         </div>
-        <div>
-          <label>Age:</label>
-          <input type="number" ref={ageRef} />
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">Age:</label>
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline" type="number" ref={ageRef} />
         </div>
-        <button type="button" onClick={handleAddChild}>
+        <button className="bg-gray-700 hover:bg-gray-500 text-white flex items-center font-bold py-2 px-4 rounded" type="button" onClick={handleAddChild}>
           Submit
         </button>
       </form>
