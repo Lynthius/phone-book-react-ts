@@ -15,6 +15,7 @@ export type ClientPayload = yup.InferType<typeof clientValidationSchema>
 
 export const orderValidationSchema = yup.object({
     quantity: yup.number().min(1, "Minimum jedna sztuka").required("Ilość jest wymagana"),
+    clientId: yup.string().required("ID jest wymagane"),
     title: yup.string().min(3, "Nazwa zamówienia musi mieć minimum 3 znaki").required("Nazwa zamówienia jest wymagana"),
     body: yup.string().min(3, "Zamówienie musi mieć minimum 3 znaki").required("Zamówienie jest wymagane"),
 })

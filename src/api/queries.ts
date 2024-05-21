@@ -12,6 +12,10 @@ export const getClientById = async (id: string): Promise<AxiosResponse<Client>> 
     return await httpClient.get(`/clients/${id}`)
 }
 
+export const getOrderById = async (id: string): Promise<AxiosResponse<Order>> => {
+    return await httpClient.get(`/orders/${id}`)
+}
+
 export const getClients = async (): Promise<AxiosResponse<Client[]>> => {
     return await httpClient.get(`/clients`)
 }
@@ -21,6 +25,10 @@ export const getOrders = async (): Promise<AxiosResponse<Order[]>> => {
 
 export const useGetClientById = (id?: string) => {
     return useQuery({ queryKey: [QUERY_KEYS.client, id], queryFn: () => id ? getClientById(id).then(res => res.data) : undefined, enabled: !!id })
+}
+
+export const useGetOrderById = (id?: string) => {
+    return useQuery({ queryKey: [QUERY_KEYS.client, id], queryFn: () => id ? getOrderById(id).then(res => res.data) : undefined, enabled: !!id })
 }
 
 export const useGetClients = () => {

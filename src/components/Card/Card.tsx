@@ -32,3 +32,5 @@ export const Card = ({ name, surname, town, street, region, phoneNumber, id }: C
     </Link>
   );
 };
+
+

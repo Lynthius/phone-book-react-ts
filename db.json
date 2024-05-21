@@ -24,7 +24,7 @@
     },
     {
       "imgSrc": "",
-      "name": "Janko",
+      "name": "Jankos",
       "surname": "Muzykant",
       "street": "Testowa 4/21",
       "postCode": "62-095",
@@ -43,25 +43,18 @@
       "body": "asdsadas"
     },
     {
-      "id": "3bca",
+      "id": "70d5",
       "clientId": "4117",
       "quantity": 1,
-      "title": "Your asd",
-      "body": "asdasdas"
+      "title": "Your title",
+      "body": "dasdasd"
     },
     {
-      "id": "8425",
-      "clientId": "4117",
-      "quantity": 1,
-      "title": "Your asd",
-      "body": "asdasdas"
-    },
-    {
-      "id": "55f6",
+      "id": "1fea",
       "clientId": "b685",
-      "quantity": 1,
-      "title": "Your titledas",
-      "body": "asdas"
+      "quantity": 4,
+      "title": "Zamówienie na magazynuj",
+      "body": "stoły"
     }
   ]
 }

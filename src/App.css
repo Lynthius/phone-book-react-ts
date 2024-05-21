@@ -39,3 +39,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.dark-theme {
+  background-color: #333;
+  color: #fff;
+}
+
+.light-theme {
+  background-color: pink;
+  color: rgb(218, 80, 12);
+}

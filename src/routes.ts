@@ -9,5 +9,6 @@ export const ROUTES={
     orderId: (id:string)=>`/orders/${id}`,
     invoices: "/invoices",
     posts: "/posts",
+    login: "/login",
     page404: "*"
 }

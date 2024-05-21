@@ -6,7 +6,8 @@ import { useGetClientById } from "../api/queries";
 import { useDeleteClient } from "../api/mutations";
 
 export const ClientPage = () => {
-  const params = useParams();
+  const params = useParams<{id:string}>();
+
   const navigate = useNavigate();
   const { data, isLoading, isError } = useGetClientById(params.id);
   const { mutate } = useDeleteClient();
@@ -38,7 +39,7 @@ export const ClientPage = () => {
         </Link>
       ) : null}
       <button
-        onClick={() => handleDelete(params.id)}
+        onClick={() => handleDelete(params.id || "")}
         className="bg-red-600 hover:bg-red-500 text-white flex items-center font-bold py-2 px-4 rounded"
       >
         Delete Client

@@ -72,8 +72,8 @@ export const useAddOrder = () => {
         mutationFn: async (values: OrderPayload) => await addOrder(values),
         onSuccess: (data) => {
             console.log("onSuccess", data)
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.client] })
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.clients] })
+            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.order] })
+            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.orders] })
         },
         onError: () => {
             console.log("Nie udało zaktualizować")

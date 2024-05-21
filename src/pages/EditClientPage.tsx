@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useGetClientById } from "../api/queries";
 import { ROUTES } from "../routes";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 type FormValues = {
   imgSrc: string;
@@ -20,7 +20,7 @@ type FormValues = {
 };
 
 export const EditClientPage = () => {
-  const params = useParams();
+  const params = useParams<{id:string}>();
   const clientId: string = params.id ?? "";
   // ? Czy to powinno mieć jakiś mechanizm że jeśli ID puste to nie wykonuj całej reszty?
   const navigate = useNavigate();
@@ -29,15 +29,16 @@ export const EditClientPage = () => {
 
   const formik = useFormik<FormValues>({
     initialValues: {
-      imgSrc: "",
-      name: "",
-      surname: "",
-      street: "",
-      postCode: "",
-      town: "",
-      region: "",
-      phoneNumber: "",
-    },
+        imgSrc: data?.imgSrc || "",
+        name: data?.name || "",
+        surname: data?.surname || "",
+        street: data?.street || "",
+        postCode: data?.postCode || "",
+        town: data?.town || "",
+        region: data?.region || "",
+        phoneNumber: data?.phoneNumber || "",
+      },
+    enableReinitialize: true,
     onSubmit: (values: FormValues) => {
       mutate(values);
       navigate(ROUTES.clients);
@@ -45,21 +46,21 @@ export const EditClientPage = () => {
     validationSchema: clientValidationSchema,
   });
 
-  useEffect(() => {
-    if (data) {
-      formik.setValues({
-        imgSrc: data.imgSrc || "",
-        name: data.name || "",
-        surname: data.surname || "",
-        street: data.street || "",
-        postCode: data.postCode || "",
-        town: data.town || "",
-        region: data.region || "",
-        phoneNumber: data.phoneNumber || "",
-      });
-    }
-  }, [data]);
-  // ? Co mu tu nie pasuje?
+  // useEffect(() => {
+  //   if (data) {
+  //     formik.setValues({
+  //       imgSrc: data.imgSrc || "",
+  //       name: data.name || "",
+  //       surname: data.surname || "",
+  //       street: data.street || "",
+  //       postCode: data.postCode || "",
+  //       town: data.town || "",
+  //       region: data.region || "",
+  //       phoneNumber: data.phoneNumber || "",
+  //     });
+  //   }
+  // }, [data]);
+  // // ? Co mu tu nie pasuje?
 
   if (isError) {
     return <p>Error</p>;
