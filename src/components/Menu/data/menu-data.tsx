@@ -1,24 +1,30 @@
-import { BsFillPeopleFill, BsFillBagCheckFill, BsFillFileEarmarkRuledFill, BsFillHddRackFill } from "react-icons/bs";
+import { BsFillPeopleFill, BsFillBagCheckFill, BsFillFileEarmarkRuledFill, BsFillHddRackFill, BsFillPersonBadgeFill } from "react-icons/bs";
+import { ROUTES } from "../../../routes";
 
 export const menuData = [
   {
     linkName: "Clients",
-    link: "/clients",
+    link: ROUTES.clients,
     icon: <BsFillPeopleFill />,
   },
   {
     linkName: "Orders",
-    link: "/orders",
+    link:  ROUTES.orders,
     icon: <BsFillBagCheckFill />,
   },
   {
     linkName: "Facture",
-    link: "/invoices",
+    link: ROUTES.invoices,
     icon: <BsFillFileEarmarkRuledFill />,
   },
   {
     linkName: "Posts",
-    link: "/posts",
+    link: ROUTES.posts,
     icon: <BsFillHddRackFill />,
+  },
+  {
+    linkName: "Login",
+    link: ROUTES.login,
+    icon: <BsFillPersonBadgeFill />,
   },
 ];
